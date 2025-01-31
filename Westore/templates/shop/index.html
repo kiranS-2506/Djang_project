@@ -1,0 +1,51 @@
+{% extends 'home.html' %}
+{% block main %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-lg-3">
+                <div class="list-group border shadow align-items-center">
+                    <a href="#" class="list-group-item mb-1"><button class="btn btn-outline-primary border-0" style="width: 15rem;">All products</button></a>
+                    {% for j in cate %}
+                        <a href="#" class="list-group-item mb-1"><button class="btn btn-outline-primary border-0" style="width: 15rem;">{{j.name}}</button></a>
+                      
+                    {% endfor %}
+
+                </div>
+
+            </div>
+            <div class="col-lg-9">
+                <div class="row">
+                    {% for i in qs %}
+                        <div class="col-lg-4">
+                            
+                            <div class="card mb-3 shadow align-items-center" style="width: 15rem;">
+                                <div class="card-header">
+                                    <img src="{{ i.image.url }}" alt="{{ i.name }}" class="img-fluid" >
+                                </div>
+                                <div class="card-body">
+                                    <h5>{{i.name}}</h5>
+                                    <p>{{i.desc}}</p>
+                                    <h5>price:₹{{i.price}}</h5>
+        
+        
+                                </div>
+                                <div class="footer">
+                                    <button class="btn btn-outline-primary mb-2">
+                                        Book Now
+        
+                                    </button>
+        
+                                </div>
+                            </div>
+                            
+                        </div>
+                    {% endfor %}
+                    
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
