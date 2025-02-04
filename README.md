@@ -32,35 +32,38 @@ This is a simple e-commerce website built using **Django**, providing essential 
 ## Installation
 
 1. **Clone this repository**:
-```bash
-git clone https://github.com/kiranS-2506/WeStore.git
-cd WeStore
-
+  ```bash
+  git clone https://github.com/kiranS-2506/WeStore.git
+  cd WeStore
+  ```
 2. **Set up your virtual environment**:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate
-exit
-
-
-
-
-
+  ```bash
+  python -m venv venv
+  source venv/bin/activate  # On Windows, use `venv\Scripts\activate
+  ```
+3. **Install the required dependencies**:
+  ```bash
+  pip install -r requirements.txt
+  ```
 
 4. **Set up the database:**
     ```bash
     python manage.py migrate
-5. **Create a superuser to access the Django admin panel:**
+5. **Create a superuser to access the Django admin panel**:
     ```bash
     python manage.py createsuperuser
 6. **Run the development server:**
      ```bash
       python manage.py runserver
+     ```
 ## Usage
  - You can visit the home page and browse through the available products.
  - Sign up for an account, log in, and start adding products to your cart.
  - The cart allows you to update the quantities, remove items, and view the total price.
  - After reviewing the cart, you can place an order.
+
+## Contributing
+- Contributions are welcome! Please open an issue or submit a pull request.
 
   
   
