@@ -25,7 +25,7 @@ This is a simple e-commerce website built using **Django**, providing essential 
 ## Tech Stack
 
 - **Backend**: Django (Python framework)
-- **Frontend**: HTML, CSS, Bootstrap 5
+- **Frontend**: HTML,Bootstrap 5
 - **Database**: SQLite (by default with Django, easily replaceable with other databases like PostgreSQL, MySQL)
 - **Filters**: Custom Django template filters for price calculations
 
@@ -45,30 +45,28 @@ This is a simple e-commerce website built using **Django**, providing essential 
   ```bash
   pip install -r requirements.txt
   ```
-
 4. **Set up the database:**
-    ```bash
-    python manage.py migrate
+  ```bash
+  python manage.py migrate
+  ```
 5. **Create a superuser to access the Django admin panel**:
-    ```bash
-    python manage.py createsuperuser
+  ```bash
+  python manage.py createsuperuser
+  ```
 6. **Run the development server:**
-     ```bash
-      python manage.py runserver
-     ```
+  ```bash
+  python manage.py runserver
+  ```
 ## Usage
- - You can visit the home page and browse through the available products.
- - Sign up for an account, log in, and start adding products to your cart.
- - The cart allows you to update the quantities, remove items, and view the total price.
- - After reviewing the cart, you can place an order.
+- You can visit the home page and browse through the available products.
+- Sign up for an account, log in, and start adding products to your cart.
+- The cart allows you to update the quantities, remove items, and view the total price.
+- After reviewing the cart, you can place an order.
 
 ## Contributing
 - Contributions are welcome! Please open an issue or submit a pull request.
-
-  
-  
 ## License
-  - This project is licensed under the MIT License - see the LICENSE file for details.  
+- This project is licensed under the MIT License - see the LICENSE file for details.  
 
   
 
