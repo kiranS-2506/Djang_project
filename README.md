@@ -32,17 +32,21 @@ This is a simple e-commerce website built using **Django**, providing essential 
 ## Installation
 
 1. **Clone this repository**:
-   ```bash
-   git clone https://github.com/kiranS-2506/WeStore.git
-   cd WeStore
-2. **Set up your virtual environment**:
-  ```bash
-  python -m venv venv
-  source venv/bin/activate  # On Windows, use `venv\Scripts\activate
+```bash
+git clone https://github.com/kiranS-2506/WeStore.git
+cd WeStore
 
-3. **Install the required dependencies**:
-    ```bash
-    pip install -r requirements.txt
+2. **Set up your virtual environment**:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate
+exit
+
+
+
+
+
+
 4. **Set up the database:**
     ```bash
     python manage.py migrate
