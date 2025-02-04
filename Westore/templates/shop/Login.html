@@ -1,37 +1,38 @@
 {% extends 'shop/home.html' %}
 {% block main %}
-    <div class="container vh-90 d-flex justify-content-center align-items-center">
-        <div class="row w-100">
-            <div class="col-lg-6 mx-auto">
-                <div class="border w-75  mt-5 shadow-lg rounded-5">
-                    <h2 class="m-5">SignIn</h2>
-                    <form class="m-5" method="POST" action="/login/">
-                        {% csrf_token %}
-                        <div class="form-group m-2">
-                            <label>User Name</label>
-                            <input type="text" name="uname" class="form-control">
-                        </div>
-                        
-                        
-                        <div class="form-group m-2">
-                            <label>Password</label>
-                            <input type="password" name="pwd" class="form-control">
-                        </div>
-                        {%if msg%}
-                            <div class="alert alert-warning alert-dismissible fade show m-2" role="alert">
-                                <strong>{{msg}}</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        {%endif%}
-                        
-                        <div class="form-group m-2 ">
-                            <input type="submit" value="SignIn" class="btn btn-outline-success">
-                        </div>
-                    </form>
-                    <h4 class="m-5 "><a href="/signup/" class="text-decoration-none">Create a new Account</a></h4>
-                </div>
-                
+<div class="container vh-90 d-flex justify-content-center align-items-center">
+    <div class="row w-100">
+        <div class="col-lg-6 mx-auto">
+            <div class="border w-75  mt-5 shadow-lg rounded-5">
+                <h2 class="m-5">LogIn</h2>
+                <p>{{msg}}</p>
+                <form class="m-5" method="POST" action="/login/">
+                    {% csrf_token %}
+                    <div class="form-group m-2">
+                        <label>User Name</label>
+                        <input type="text" name="uname" class="form-control">
+                    </div>
+
+
+                    <div class="form-group m-2">
+                        <label>Password</label>
+                        <input type="password" name="pwd" class="form-control">
+                    </div>
+                    {%if msg%}
+                    <div class="alert alert-warning alert-dismissible fade show m-2" role="alert">
+                        <strong>{{msg}}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {%endif%}
+
+                    <div class="form-group m-2 ">
+                        <input type="submit" value="SignIn" class="btn btn-outline-success">
+                    </div>
+                </form>
+                <h4 class="m-5 "><a href="{% url 'signup'%}" class="text-decoration-none">Create a new Account</a></h4>
             </div>
+
         </div>
     </div>
+</div>
 {% endblock %}

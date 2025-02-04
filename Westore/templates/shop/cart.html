@@ -1,5 +1,67 @@
 {% extends 'shop/index.html' %}
-{%block main %}
-{{msg}}
+{% load customfilters %}
 
-{%endblock%}
+{% block main %}
+<div class="container my-5">
+    <h2>Cart Summary</h2>
+
+    {% if cart_items %}
+    <table class="table table-bordered table-striped">
+        <tbody class="text-center">
+            {% for item in cart_items %}
+            <tr>
+                <td>
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid"
+                        style="max-width: 100px; max-height: 70px;">
+                </td>
+                <td>{{ item.product.name }}</td>
+                <td>₹{{ item.product.price }}</td>
+                <td>
+
+                    <form method="POST" action="{% url 'update_quantity' item.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" name="action" value="increase" class="btn btn-sm btn-secondary">+</button>
+                        <span  class="border-1 p-2">{{ item.quantity }}</span>
+                        <button type="submit" name="action" value="decrease" class="btn btn-sm btn-secondary">-</button>
+                    </form>
+                </td>
+                <td>₹{{ item.product.price|multiple:item.quantity }}</td>
+                <td>
+                    <form method="POST" action="{% url 'remove_item' item.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                    </form>
+                </td>
+
+            </tr>
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <div class="d-flex justify-content-end mt-3">
+                        <h4 class="text-info">Total Price: ₹{{ total_price }}</h4>
+                    </div>
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+
+    
+    <div class="d-flex justify-content-end mt-4">
+        <form method="POST" action="{% url 'place_order' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Place Order</button>
+        </form>
+    </div>
+
+    {% else %}
+    <p>Your cart is empty.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -9,7 +9,7 @@ def home(request):
     cname = request.session.get('cname',"")
     qs = product.objects.all()
     categories = Category.objects.all()
-    response = render(request,"shop/index.html",context={"qs":qs,'cate':categories,'user':cname})
+    response = render(request,"shop/index.html",context={"qs":qs,'cate':categories,'cname':cname})
     
     return response
 
@@ -78,25 +78,74 @@ def SignIn(request):
             return redirect("home")
         except:
             error_msg="user name and password did not match forget password"
-            response = render(request, "shop/Signup.html",{'msg':error_msg})
+            response = render(request, "shop/Login.html",{'msg':error_msg})
             return response
 def addToCart(request, product_id):
+        qs = product.objects.all()
+        categories = Category.objects.all()
         cart_product = product.objects.get(id=product_id)
-        cname = request.session.get('cname',"")
-        customer=Customer.objects.get(User_name=cname)
+        cname = request.session.get('cname',None)
         
-        if cname:
-            cart_item, created = Cart.objects.get_or_create(customer=customer, product=cart_product)
-
-            if not created:
-                cart_item.quantity += 1
-                cart_item.save()
-                return render(request,"shop/cart.html",{'msg':"items added"})
-            else:
-                return render(request, "shop/cart.html", {'msg': "New item added to cart."})
-        else:
+        
+        if not cname:
+            return redirect('login')
+        try:
+            customer=Customer.objects.get(User_name=cname)
+        except Customer.DoesNotExist:
             return redirect('login')
         
+        cart_item, created = Cart.objects.get_or_create(customer=customer, product=cart_product)
+
+        if not created:
+            cart_item.quantity += 1
+            cart_item.save()
+            return render(request,"shop/index.html",context={"qs":qs,'cate':categories,'cname':cname})
+        else:
+            return render(request,"shop/index.html",context={"qs":qs,'cate':categories,'cname':cname})
+def view_cart(request):
+    cname = request.session.get('cname', "")
+    if not cname:
+        return redirect('login')
+    customer = Customer.objects.get(User_name=cname)
+
+    cart_items = Cart.objects.filter(customer=customer)
+    
+    # Calculate the total price of the cart
+    total_price = sum(item.product.price * item.quantity for item in cart_items)
+
+    context = {
+        'cart_items': cart_items,
+        'total_price': total_price,
+        'cname':cname
+    }
+    
+    return render(request, 'shop/cart.html', context)
+def update_quantity(request,item_id):
+    action = request.POST.get('action')
+    item = Cart.objects.get(id=item_id)
+    if action=='increase':
+        item.quantity+=1
+    elif action=='decrease' and item.quantity >1:
+        item.quantity-=1
+    item.save()
+    return redirect('viewcart')
+def remove_item(request,item_id):
+    item = Cart.objects.get(id=item_id)
+    item.delete()
+    return redirect('viewcart')
+def place_order(request):
+    return HttpResponse("<h2>Thank You for Order</h2>")
+    
+
+
+def logout(request):
+    if 'cname' in request.session:
+        del request.session['cname']
+        return redirect('login')
+    else:
+        return redirect("SignIn")
+
+
 
         
         
