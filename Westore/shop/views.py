@@ -99,9 +99,9 @@ def addToCart(request, product_id):
         if not created:
             cart_item.quantity += 1
             cart_item.save()
-            return render(request,"shop/index.html",context={"qs":qs,'cate':categories,'cname':cname})
+            return redirect('category')
         else:
-            return render(request,"shop/index.html",context={"qs":qs,'cate':categories,'cname':cname})
+            return redirect('category')
 def view_cart(request):
     cname = request.session.get('cname', "")
     if not cname:
