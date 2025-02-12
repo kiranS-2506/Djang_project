@@ -4,8 +4,8 @@
 {% block main %}
 <div class="container my-5">
     <div class="row">
-        <div style="background-color: #7e817f;">
-            <h2  class="text-secondary" >Cart Summary</h2>
+        <div>
+            <h2  class="text" style="color:#082761">Cart Summary</h2>
 
             {% if cart_items %}
             <table class="table table-bordered table-striped">
@@ -51,8 +51,8 @@
 
 
     <div class="d-flex justify-content-end flex-row">
-        <div class="mt-3" style="background-color: #656d9a;">
-            <h2 class="text-secondary">Price Summary</h2>
+        <div class="mt-3">
+            <h2  class="text" style="color:#2a0a68">Price Summary</h2>
             <table class="table table-bordered table-striped" style="width:fit-content">
             {% for item in cart_items %}
             <tbody class="text-center">
